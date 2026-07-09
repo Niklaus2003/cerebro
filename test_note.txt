@@ -1,0 +1,6 @@
+# Project Ideas: Cerebro
+
+This is a local markdown file to test the capture capabilities of Cerebro.
+It should be successfully read and stored as a JSON object in raw/ folder.
+- Idea 1: Add a daily digest feature.
+- Idea 2: Add voice note transcription.

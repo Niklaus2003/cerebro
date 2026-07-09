@@ -1,0 +1,18 @@
+# Core LLM Client
+groq>=0.9.0
+
+# Vector Embeddings and Computation
+sentence-transformers>=2.2.2
+numpy>=1.20.0
+scikit-learn>=1.0.0
+
+# Frontend UI Dashboard
+streamlit>=1.20.0
+
+# Link Scraping & Processing
+beautifulsoup4>=4.9.0
+requests>=2.25.0
+markdownify>=0.11.0
+
+# Utilities
+python-dotenv>=0.19.0

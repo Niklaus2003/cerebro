@@ -1,0 +1,30 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Environment variables (contains API keys)
+.env
+
+# Python caching
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore raw captured notes (private data)
+raw/*
+!raw/.gitkeep
+
+# Ignore classified wiki notes (private data)
+wiki/Projects/*
+!wiki/Projects/.gitkeep
+wiki/Areas/*
+!wiki/Areas/.gitkeep
+wiki/Resources/*
+!wiki/Resources/.gitkeep
+wiki/Archives/*
+!wiki/Archives/.gitkeep
+
+# Ignore docs folder as requested by the user
+docs/
