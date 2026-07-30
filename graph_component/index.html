@@ -105,6 +105,7 @@
         var currentSelectedId = null;
         var isDragging = false;
         var initialFitDone = false;
+        var lastResetToken = 0;
 
         function hideLoader() {
             var loader = document.getElementById('loading-overlay');
@@ -123,6 +124,8 @@
             var visEdges = data.edges || [];
             var physicsEnabled = (data.physics !== undefined) ? data.physics : true;
             var selectedId = data.selectedId || null;
+            var resetView = data.resetView || false;
+            var resetToken = data.resetToken || 0;
 
             var container = document.getElementById('network-container');
 
@@ -248,6 +251,22 @@
                 edgesDataSet.add(visEdges);
 
                 hideLoader();
+            }
+
+            // Bring graph back to initial center position on refresh if requested
+            if (resetView || (resetToken && resetToken !== lastResetToken)) {
+                lastResetToken = resetToken;
+                try {
+                    network.fit({
+                        animation: {
+                            duration: 500,
+                            easingFunction: "easeInOutQuad"
+                        }
+                    });
+                    network.stabilize(100);
+                } catch(e) {
+                    console.log("Could not reset graph position:", e);
+                }
             }
 
             // Highlight selected node visually without hijacking user's zoom or pan position

@@ -316,12 +316,15 @@ def render_vis_graph(nodes, edges, selected_category="All", search_term="", phys
                 "arrows": {"to": {"enabled": True, "scaleFactor": 0.5}}
             })
 
-    # Invoke custom component with selectedId
+    reset_token = st.session_state.get("graph_reset_token", 0)
+
+    # Invoke custom component with selectedId and resetToken
     component_value = graph_component(
         nodes=vis_nodes,
         edges=vis_edges,
         physics=physics_enabled,
         selectedId=currently_selected_id,
+        resetToken=reset_token,
         default=None,
         key="native_graph_network_component"
     )
@@ -384,7 +387,8 @@ def main():
         except Exception as err:
             st.sidebar.error(f"Rebuild failed: {err}")
         st.session_state.pop("graph_data_cache", None)
-        st.toast("Knowledge Graph refreshed successfully!")
+        st.session_state["graph_reset_token"] = st.session_state.get("graph_reset_token", 0) + 1
+        st.toast("Knowledge Graph refreshed and reset to center!")
 
     if st.sidebar.button("🔄 Refresh Graph", key="sidebar_refresh_btn", type="primary", use_container_width=True):
         trigger_graph_refresh()
