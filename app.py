@@ -331,6 +331,33 @@ def render_vis_graph(nodes, edges, selected_category="All", search_term="", phys
     return component_value
 
 def main():
+    # Inject auto-select JavaScript for text inputs so clicking into query bar selects previous text for instant overwrite
+    components.html("""
+    <script>
+    (function() {
+        function attachAutoSelect() {
+            try {
+                var doc = window.parent.document;
+                var inputs = doc.querySelectorAll('input[type="text"], textarea');
+                inputs.forEach(function(input) {
+                    if (!input.dataset.autoselectAttached) {
+                        input.dataset.autoselectAttached = "true";
+                        input.addEventListener('focus', function() {
+                            this.select();
+                        });
+                        input.addEventListener('click', function() {
+                            this.select();
+                        });
+                    }
+                });
+            } catch(e) {}
+        }
+        attachAutoSelect();
+        setInterval(attachAutoSelect, 600);
+    })();
+    </script>
+    """, height=0, width=0)
+
     # Top Header Banner
     st.markdown("""
     <div class="header-container">
@@ -465,8 +492,9 @@ def main():
                         st.rerun()
                 
                 # Filter bar
-                def clear_graph_search_fn():
+                if st.session_state.get("clear_graph_search_flag"):
                     st.session_state["graph_search_input_key"] = ""
+                    st.session_state["clear_graph_search_flag"] = False
 
                 with st.form("form_graph_filter", clear_on_submit=False):
                     c_cat, c_srch, c_clr, c_phys = st.columns([3, 4, 2, 3], vertical_alignment="bottom")
@@ -480,7 +508,7 @@ def main():
                         physics_on = st.checkbox("Enable Physics", value=True)
 
                 if btn_clear_graph:
-                    clear_graph_search_fn()
+                    st.session_state["clear_graph_search_flag"] = True
                     st.rerun()
 
                 # Render canvas graph component with current_active_id
@@ -581,9 +609,10 @@ def main():
         st.markdown("### 🤖 Ask Cerebro RAG Search")
         st.markdown("Ask natural language questions to synthesize answers from your second brain.")
 
-        def clear_ask_form_fn():
+        if st.session_state.get("clear_ask_flag"):
             st.session_state["ask_q_input_key"] = ""
             st.session_state["ask_result_data"] = None
+            st.session_state["clear_ask_flag"] = False
 
         with st.form("ask_rag_form", clear_on_submit=False):
             st_col_q, st_col_k, st_col_btn, st_col_clr = st.columns([6, 2, 2, 2], vertical_alignment="bottom")
@@ -601,7 +630,7 @@ def main():
                 clear_ask = st.form_submit_button("🗑️ Clear Query", use_container_width=True)
 
         if clear_ask:
-            clear_ask_form_fn()
+            st.session_state["clear_ask_flag"] = True
             st.rerun()
 
         if submit_ask:
