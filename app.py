@@ -517,11 +517,28 @@ def main():
                 st.markdown("<br/>", unsafe_allow_html=True)
                 st.markdown("#### 📄 Note Body Content")
                 file_rel = selected_node.get("filepath", "")
-                full_path = os.path.join(BASE_DIR, file_rel)
-                if os.path.exists(full_path):
-                    with open(full_path, "r", encoding="utf-8", errors="replace") as f_n:
+                normalized_rel = file_rel.replace("\\", "/")
+                candidate_paths = [
+                    os.path.join(BASE_DIR, file_rel),
+                    os.path.join(BASE_DIR, normalized_rel),
+                    os.path.join(BASE_DIR, "wiki", file_rel),
+                    os.path.join(BASE_DIR, "wiki", normalized_rel),
+                ]
+                if "/" in normalized_rel:
+                    candidate_paths.append(os.path.join(WIKI_DIR, normalized_rel))
+
+                found_path = None
+                for p in candidate_paths:
+                    if os.path.exists(p) and os.path.isfile(p):
+                        found_path = p
+                        break
+
+                if found_path:
+                    with open(found_path, "r", encoding="utf-8", errors="replace") as f_n:
                         st.code(f_n.read(), language="markdown")
                 else:
+                    if selected_node.get("summary"):
+                        st.info(f"**Summary:** {selected_node.get('summary')}")
                     st.warning("Note file not found on disk.")
 
     # =========================================================================

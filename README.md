@@ -30,11 +30,6 @@ cerebro/
 ├── graph.json               # Generated network graph data
 ├── .streamlit/
 │   └── config.toml          # Streamlit theme & server configuration
-├── docs/
-│   ├── implementation_plan.md  # Detailed implementation roadmap
-│   ├── deployment_guide.md     # Deployment & secrets setup instructions
-│   ├── architecture.md         # System architecture documentation
-│   └── problem_statement.md    # Problem statement & specifications
 ├── raw/                     # Unprocessed captured raw JSON files
 └── wiki/                    # Organised PARA markdown files
     ├── Projects/
@@ -55,7 +50,7 @@ cerebro/
 ### 2. Installation
 ```bash
 # Clone repository
-git clone https://github.com/your-username/cerebro.git
+git clone https://github.com/Niklaus2003/cerebro.git
 cd cerebro
 
 # Create and activate virtual environment
@@ -114,18 +109,18 @@ python ask.py "What notes do I have on graph theory?"
 
 ---
 
-## ☁️ Deployment Instructions
+## ☁️ Cloud Deployment & Secrets Setup
 
-Detailed instructions for deploying Cerebro to **Streamlit Community Cloud**, **Hugging Face Spaces**, or **Docker** can be found in the [Deployment Guide](file:///docs/deployment_guide.md).
-
-### Quick Streamlit Cloud Deployment:
-1. Push repository to GitHub.
-2. Connect repository on [share.streamlit.io](https://share.streamlit.io/).
-3. Add API Keys under **Advanced Settings -> Secrets**:
+### Deploying to Streamlit Community Cloud (Recommended)
+1. Push this repository to GitHub (`https://github.com/Niklaus2003/cerebro.git`).
+2. Log in to [share.streamlit.io](https://share.streamlit.io/) and create a **New app**.
+3. Set **Main file path** to `app.py`.
+4. Under **Advanced Settings -> Secrets**, add your API Keys in TOML format:
    ```toml
-   GROQ_API_KEY = "gsk_..."
+   GROQ_API_KEY = "gsk_your_groq_api_key_here"
+   GEMINI_API_KEY = "AIzaSy_your_gemini_api_key_here"
    ```
-4. Click **Deploy**.
+5. Click **Deploy**. The app will build dependencies from `requirements.txt` and launch with full knowledge graph and RAG support.
 
 ---
 

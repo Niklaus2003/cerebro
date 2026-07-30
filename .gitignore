@@ -13,18 +13,18 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Ignore raw captured notes (private user data)
+# Ignore raw captured notes (private JSON payloads)
 raw/*
 !raw/.gitkeep
 
-# Ignore classified wiki notes (private user data)
-wiki/*
-!wiki/.gitkeep
-!wiki/Projects/.gitkeep
-!wiki/Areas/.gitkeep
-!wiki/Resources/.gitkeep
-!wiki/Archives/.gitkeep
+# Ignore temporary scraped domain folders and obsidian configs in wiki
+wiki/en.wikipedia.org/
+wiki/upload.wikimedia.org/
+wiki/.obsidian/
 
-# Ignore local embeddings cache data
+# Ignore docs folder as requested by the user
+docs/
+
+# Ignore local embeddings cache data & temporary html preview
 data/
 graph_viewer.html
