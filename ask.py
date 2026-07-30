@@ -140,11 +140,15 @@ def cosine_similarity(v1, v2):
         return 0.0
     return float(dot_prod / (norm1 * norm2))
 
-SYSTEM_PROMPT = """You are Cerebro AI, an intelligent personal knowledge assistant.
-Your goal is to answer user questions accurately and concisely based strictly on the provided context retrieved from the user's personal wiki (Second Brain).
+SYSTEM_PROMPT = """You are Cerebro AI, an intelligent personal knowledge assistant representing Aaron Francis's personal Second Brain.
+
+User Identity Context:
+- The owner and user of this personal Second Brain is Aaron Francis.
+- Whenever the user refers to 'me', 'my', 'I', 'myself', or 'Aaron' / 'Aaron Francis', they are asking about Aaron Francis, the system owner.
+- Synthesize all available personal notes, profile details, LinkedIn links, contact details, background details, and preferences regarding Aaron Francis when answering questions about the user.
 
 Instructions:
-1. Base your answer on the provided context notes.
+1. Base your answer on the provided context notes from Aaron Francis's Second Brain.
 2. Synthesize information clearly in a well-structured response (using markdown formatting if helpful).
 3. Always cite your source notes explicitly at the end of your response or inline using their Titles and Category/ID (e.g. Source: [Note Title] (Category: Resources)).
 4. If the provided notes do not contain sufficient information to answer the question, clearly state what information is available and mention that no further context was found in the wiki.
@@ -231,6 +235,7 @@ def retrieve_top_k(query, notes_list, model=None, top_k=3):
     """
     Encodes query and computes similarity scores against notes_list.
     Returns top_k matching notes sorted by similarity descending.
+    Enhanced with personal identity boosting for 'Aaron Francis' / 'me' / 'my' queries.
     """
     if not notes_list:
         return []
@@ -238,11 +243,24 @@ def retrieve_top_k(query, notes_list, model=None, top_k=3):
     if model is None:
         model = get_embedding_model()
 
-    query_embedding = model.encode(query)
+    query_lower = query.lower()
+    personal_keywords = ["me", "my", "i", "aaron", "francis", "myself", "who am i", "linkedin", "profile", "identity", "owner", "contact"]
+    is_personal_query = any(w in query_lower.split() or w in query_lower for w in personal_keywords)
+
+    search_query = query
+    if is_personal_query:
+        search_query = f"{query} Aaron Francis user profile personal background identity linkedin"
+
+    query_embedding = model.encode(search_query)
 
     scored_notes = []
     for note in notes_list:
         sim = cosine_similarity(query_embedding, note["embedding"])
+        
+        note_text_lower = (str(note.get("title", "")) + " " + str(note.get("summary", "")) + " " + str(note.get("semantic_text", ""))).lower()
+        if is_personal_query and ("aaron" in note_text_lower or "francis" in note_text_lower or "linkedin" in note_text_lower or "profile" in note_text_lower):
+            sim += 0.30
+
         note_copy = dict(note)
         note_copy["score"] = sim
         scored_notes.append(note_copy)

@@ -376,6 +376,20 @@ def main():
 
     # Sidebar Controls & Key Status
     st.sidebar.markdown("## 🧠 **Cerebro System**")
+    
+    def trigger_graph_refresh():
+        try:
+            from build_graph import build_graph
+            build_graph()
+        except Exception as err:
+            st.sidebar.error(f"Rebuild failed: {err}")
+        st.session_state.pop("graph_data_cache", None)
+        st.toast("Knowledge Graph refreshed successfully!")
+
+    if st.sidebar.button("🔄 Refresh Graph", key="sidebar_refresh_btn", type="primary", use_container_width=True):
+        trigger_graph_refresh()
+        st.rerun()
+
     st.sidebar.markdown("---")
 
     gemini_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
@@ -438,14 +452,30 @@ def main():
                     st.session_state["active_node_id"] = label_to_id[selected_lbl]
 
             with col_graph:
-                st.markdown("### Interactive Network Graph")
+                col_head1, col_head2 = st.columns([7, 3])
+                with col_head1:
+                    st.markdown("### Interactive Network Graph")
+                with col_head2:
+                    if st.button("🔄 Refresh Graph", key="tab1_refresh_btn", use_container_width=True):
+                        trigger_graph_refresh()
+                        st.rerun()
                 
                 # Filter bar
-                c_cat, c_srch, c_phys = st.columns([3, 4, 3])
+                if "graph_search_text" not in st.session_state:
+                    st.session_state["graph_search_text"] = ""
+
+                def clear_graph_search_fn():
+                    st.session_state["graph_search_text"] = ""
+
+                c_cat, c_srch, c_clr, c_phys = st.columns([3, 4, 2, 3])
                 with c_cat:
                     selected_cat = st.selectbox("Category Filter", ["All"] + CATEGORIES, index=0)
                 with c_srch:
-                    search_query = st.text_input("Highlight Node", placeholder="Type title keywords...")
+                    search_query = st.text_input("Highlight Node", value=st.session_state.get("graph_search_text", ""), placeholder="Type title keywords...", key="graph_search_input_key")
+                    st.session_state["graph_search_text"] = search_query
+                with c_clr:
+                    st.markdown("<div style='height: 28px;'></div>", unsafe_allow_html=True)
+                    st.button("🗑️ Clear", key="btn_clear_graph_srch", use_container_width=True, on_click=clear_graph_search_fn)
                 with c_phys:
                     st.markdown("<div style='height: 28px;'></div>", unsafe_allow_html=True)
                     physics_on = st.checkbox("Enable Physics", value=True)
@@ -542,20 +572,36 @@ def main():
                     st.warning("Note file not found on disk.")
 
     # =========================================================================
-    # TAB 2: ASK CEREBRO (RAG Search Engine with Clean Button Alignment)
+    # TAB 2: ASK CEREBRO (RAG Search Engine with Persistent Query & Clear Button)
     # =========================================================================
     with tab_ask:
         st.markdown("### 🤖 Ask Cerebro RAG Search")
         st.markdown("Ask natural language questions to synthesize answers from your second brain.")
 
-        with st.form("ask_form", clear_on_submit=True):
-            st_col_q, st_col_k, st_col_btn = st.columns([6, 2, 2], vertical_alignment="bottom")
-            with st_col_q:
-                q_text = st.text_input("Your Question:", placeholder="e.g. What notes do I have on coding or project setup?", key="ask_q")
-            with st_col_k:
-                k_val = st.number_input("Top K Sources", min_value=1, max_value=10, value=3)
-            with st_col_btn:
-                submit_ask = st.form_submit_button("🚀 Ask Cerebro", type="primary", use_container_width=True)
+        if "ask_q_text" not in st.session_state:
+            st.session_state["ask_q_text"] = ""
+
+        def clear_ask_state_fn():
+            st.session_state["ask_q_text"] = ""
+            st.session_state["ask_result_data"] = None
+
+        st_col_q, st_col_k = st.columns([7, 3])
+        with st_col_q:
+            q_text = st.text_input(
+                "Your Question:",
+                value=st.session_state.get("ask_q_text", ""),
+                placeholder="e.g. What notes do I have on coding or project setup?",
+                key="ask_input_field_key"
+            )
+            st.session_state["ask_q_text"] = q_text
+        with st_col_k:
+            k_val = st.number_input("Top K Sources", min_value=1, max_value=10, value=3, key="ask_k_val_key")
+
+        btn_col1, btn_col2, _ = st.columns([3, 2, 5])
+        with btn_col1:
+            submit_ask = st.button("🚀 Ask Cerebro", type="primary", use_container_width=True, key="btn_submit_ask_rag")
+        with btn_col2:
+            st.button("🗑️ Clear Query", key="btn_clear_ask_query", use_container_width=True, on_click=clear_ask_state_fn)
 
         if submit_ask:
             if not q_text.strip():
@@ -566,30 +612,32 @@ def main():
                 with st.spinner("Retrieving relevant notes & synthesizing response..."):
                     try:
                         res = ask(q_text, top_k=k_val)
-                        
-                        st.markdown("---")
-                        st.markdown("### 💡 Cerebro AI Response")
-                        st.markdown(f"""
-                        <div class="glass-card" style="border-left: 4px solid #00E5FF; padding: 20px 24px; font-size: 15px; line-height: 1.6;">
-                            {res['answer']}
-                        </div>
-                        """, unsafe_allow_html=True)
-
-                        st.markdown("<br/>", unsafe_allow_html=True)
-                        st.markdown("### 📚 Retrieved Context Sources")
-                        for idx, src in enumerate(res["sources"], start=1):
-                            cat = src.get("category", "Resources")
-                            badge_cls = f"badge badge-{cat.lower()}"
-                            
-                            with st.expander(f"Source {idx}: [{cat}] {src['title']} (Similarity: {src['score']:.4f})"):
-                                st.markdown(f"**Category:** <span class='{badge_cls}'>{cat}</span>", unsafe_allow_html=True)
-                                st.markdown(f"**Summary:** {src.get('summary', 'N/A')}")
-                                st.markdown(f"**Filepath:** `{src.get('rel_path')}`")
-                                st.markdown("**Body Content:**")
-                                st.code(src.get("body", "").strip(), language="markdown")
-
+                        st.session_state["ask_result_data"] = res
                     except Exception as err:
                         st.error(f"Search Execution Failed: {err}")
+
+        res = st.session_state.get("ask_result_data")
+        if res and isinstance(res, dict) and "answer" in res:
+            st.markdown("---")
+            st.markdown("### 💡 Cerebro AI Response")
+            st.markdown(f"""
+            <div class="glass-card" style="border-left: 4px solid #00E5FF; padding: 20px 24px; font-size: 15px; line-height: 1.6;">
+                {res['answer']}
+            </div>
+            """, unsafe_allow_html=True)
+
+            st.markdown("<br/>", unsafe_allow_html=True)
+            st.markdown("### 📚 Retrieved Context Sources")
+            for idx, src in enumerate(res.get("sources", []), start=1):
+                cat = src.get("category", "Resources")
+                badge_cls = f"badge badge-{cat.lower()}"
+                
+                with st.expander(f"Source {idx}: [{cat}] {src['title']} (Similarity: {src['score']:.4f})"):
+                    st.markdown(f"**Category:** <span class='{badge_cls}'>{cat}</span>", unsafe_allow_html=True)
+                    st.markdown(f"**Summary:** {src.get('summary', 'N/A')}")
+                    st.markdown(f"**Filepath:** `{src.get('rel_path')}`")
+                    st.markdown("**Body Content:**")
+                    st.code(src.get("body", "").strip(), language="markdown")
 
     # =========================================================================
     # TAB 3: CAPTURE & UPLOADER (With Automatic Clear Input Fields On Submit)
