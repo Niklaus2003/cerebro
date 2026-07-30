@@ -465,24 +465,23 @@ def main():
                         st.rerun()
                 
                 # Filter bar
-                if "graph_search_text" not in st.session_state:
-                    st.session_state["graph_search_text"] = ""
-
                 def clear_graph_search_fn():
-                    st.session_state["graph_search_text"] = ""
+                    st.session_state["graph_search_input_key"] = ""
 
-                c_cat, c_srch, c_clr, c_phys = st.columns([3, 4, 2, 3])
-                with c_cat:
-                    selected_cat = st.selectbox("Category Filter", ["All"] + CATEGORIES, index=0)
-                with c_srch:
-                    search_query = st.text_input("Highlight Node", value=st.session_state.get("graph_search_text", ""), placeholder="Type title keywords...", key="graph_search_input_key")
-                    st.session_state["graph_search_text"] = search_query
-                with c_clr:
-                    st.markdown("<div style='height: 28px;'></div>", unsafe_allow_html=True)
-                    st.button("🗑️ Clear", key="btn_clear_graph_srch", use_container_width=True, on_click=clear_graph_search_fn)
-                with c_phys:
-                    st.markdown("<div style='height: 28px;'></div>", unsafe_allow_html=True)
-                    physics_on = st.checkbox("Enable Physics", value=True)
+                with st.form("form_graph_filter", clear_on_submit=False):
+                    c_cat, c_srch, c_clr, c_phys = st.columns([3, 4, 2, 3], vertical_alignment="bottom")
+                    with c_cat:
+                        selected_cat = st.selectbox("Category Filter", ["All"] + CATEGORIES, index=0)
+                    with c_srch:
+                        search_query = st.text_input("Highlight Node", placeholder="Type title keywords...", key="graph_search_input_key")
+                    with c_clr:
+                        btn_clear_graph = st.form_submit_button("🗑️ Clear", use_container_width=True)
+                    with c_phys:
+                        physics_on = st.checkbox("Enable Physics", value=True)
+
+                if btn_clear_graph:
+                    clear_graph_search_fn()
+                    st.rerun()
 
                 # Render canvas graph component with current_active_id
                 clicked_canvas_id = render_vis_graph(
@@ -576,36 +575,34 @@ def main():
                     st.warning("Note file not found on disk.")
 
     # =========================================================================
-    # TAB 2: ASK CEREBRO (RAG Search Engine with Persistent Query & Clear Button)
+    # TAB 2: ASK CEREBRO (RAG Search Engine with Form Submit on Enter & Clear Button)
     # =========================================================================
     with tab_ask:
         st.markdown("### 🤖 Ask Cerebro RAG Search")
         st.markdown("Ask natural language questions to synthesize answers from your second brain.")
 
-        if "ask_q_text" not in st.session_state:
-            st.session_state["ask_q_text"] = ""
-
-        def clear_ask_state_fn():
-            st.session_state["ask_q_text"] = ""
+        def clear_ask_form_fn():
+            st.session_state["ask_q_input_key"] = ""
             st.session_state["ask_result_data"] = None
 
-        st_col_q, st_col_k = st.columns([7, 3])
-        with st_col_q:
-            q_text = st.text_input(
-                "Your Question:",
-                value=st.session_state.get("ask_q_text", ""),
-                placeholder="e.g. What notes do I have on coding or project setup?",
-                key="ask_input_field_key"
-            )
-            st.session_state["ask_q_text"] = q_text
-        with st_col_k:
-            k_val = st.number_input("Top K Sources", min_value=1, max_value=10, value=3, key="ask_k_val_key")
+        with st.form("ask_rag_form", clear_on_submit=False):
+            st_col_q, st_col_k, st_col_btn, st_col_clr = st.columns([6, 2, 2, 2], vertical_alignment="bottom")
+            with st_col_q:
+                q_text = st.text_input(
+                    "Your Question:",
+                    placeholder="e.g. What notes do I have on coding or project setup?",
+                    key="ask_q_input_key"
+                )
+            with st_col_k:
+                k_val = st.number_input("Top K Sources", min_value=1, max_value=10, value=3, key="ask_k_val_key")
+            with st_col_btn:
+                submit_ask = st.form_submit_button("🚀 Ask Cerebro", type="primary", use_container_width=True)
+            with st_col_clr:
+                clear_ask = st.form_submit_button("🗑️ Clear Query", use_container_width=True)
 
-        btn_col1, btn_col2, _ = st.columns([3, 2, 5])
-        with btn_col1:
-            submit_ask = st.button("🚀 Ask Cerebro", type="primary", use_container_width=True, key="btn_submit_ask_rag")
-        with btn_col2:
-            st.button("🗑️ Clear Query", key="btn_clear_ask_query", use_container_width=True, on_click=clear_ask_state_fn)
+        if clear_ask:
+            clear_ask_form_fn()
+            st.rerun()
 
         if submit_ask:
             if not q_text.strip():
