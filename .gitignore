@@ -5,6 +5,7 @@ env/
 
 # Environment variables (contains API keys)
 .env
+.streamlit/secrets.toml
 
 # Python caching
 __pycache__/
@@ -12,19 +13,18 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Ignore raw captured notes (private data)
+# Ignore raw captured notes (private user data)
 raw/*
 !raw/.gitkeep
 
-# Ignore classified wiki notes (private data)
-wiki/Projects/*
+# Ignore classified wiki notes (private user data)
+wiki/*
+!wiki/.gitkeep
 !wiki/Projects/.gitkeep
-wiki/Areas/*
 !wiki/Areas/.gitkeep
-wiki/Resources/*
 !wiki/Resources/.gitkeep
-wiki/Archives/*
 !wiki/Archives/.gitkeep
 
-# Ignore docs folder as requested by the user
-docs/
+# Ignore local embeddings cache data
+data/
+graph_viewer.html

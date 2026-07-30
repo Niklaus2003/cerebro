@@ -7,7 +7,6 @@ import argparse
 from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
-from markdownify import markdownify as md
 
 # Directory where raw captures are stored
 RAW_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "raw")
@@ -43,7 +42,11 @@ def scrape_url(url):
             
         # Convert body html to markdown
         body_content = soup.body if soup.body else soup
-        markdown_text = md(str(body_content), heading_style="ATX")
+        try:
+            from markdownify import markdownify as md
+            markdown_text = md(str(body_content), heading_style="ATX")
+        except ImportError:
+            markdown_text = str(body_content.get_text())
         
         # Format content nicely
         full_content = f"# {title}\n\nSource: {url}\n\n{markdown_text.strip()}"

@@ -1,0 +1,307 @@
+{
+  "nodes": [
+    {
+      "id": "4981ec90-d6c7-41d4-9cf4-82f241bba253",
+      "title": "Review SecondSelf project architecture docs tonight",
+      "category": "Projects",
+      "tags": [
+        "secondself",
+        "project",
+        "review",
+        "docs"
+      ],
+      "summary": "Review SecondSelf project architecture docs tonight",
+      "timestamp": "2026-07-09T14:43:41.840177Z",
+      "source_type": "text",
+      "source_value": "cli",
+      "filepath": "wiki/Projects/2026-07-09T14-43-41-840177Z_4981ec90-d6c7-41d4-9cf4-82f241bba253.md"
+    },
+    {
+      "id": "483c1376-9f06-400b-a775-373b787a9c13",
+      "title": "Build an automated personal second brain within 4 weeks.",
+      "category": "Projects",
+      "tags": [
+        "secondself",
+        "personalbrain",
+        "automation",
+        "projectmanagement"
+      ],
+      "summary": "Build an automated personal second brain within 4 weeks.",
+      "timestamp": "2026-07-09T14:43:57.622839Z",
+      "source_type": "text",
+      "source_value": "cli",
+      "filepath": "wiki/Projects/2026-07-09T14-43-57-622839Z_483c1376-9f06-400b-a775-373b787a9c13.md"
+    },
+    {
+      "id": "ef59ea71-8827-4160-a09e-819380da81a9",
+      "title": "Local markdown file to test Cerebro capture capabilities",
+      "category": "Projects",
+      "tags": [
+        "cerebro",
+        "project",
+        "ideas",
+        "feature",
+        "development"
+      ],
+      "summary": "Local markdown file to test Cerebro capture capabilities",
+      "timestamp": "2026-07-09T14:44:03.247068Z",
+      "source_type": "file",
+      "source_value": "test_note.txt",
+      "filepath": "wiki/Projects/2026-07-09T14-44-03-247068Z_ef59ea71-8827-4160-a09e-819380da81a9.md"
+    },
+    {
+      "id": "da7d7683-9c5c-4fbe-8b14-464f22359b39",
+      "title": "Create a custom Chrome extension for quick URL capturing",
+      "category": "Projects",
+      "tags": [
+        "chrome extension",
+        "url capturing",
+        "cli"
+      ],
+      "summary": "Create a custom Chrome extension for quick URL capturing",
+      "timestamp": "2026-07-09T14:45:03.385953Z",
+      "source_type": "text",
+      "source_value": "cli",
+      "filepath": "wiki/Projects/2026-07-09T14-45-03-385953Z_da7d7683-9c5c-4fbe-8b14-464f22359b39.md"
+    },
+    {
+      "id": "d5a6a18c-3558-4088-9120-5ec5baa52ce1",
+      "title": "Preparing to deploy Cerebro AI Second Brain system with k...",
+      "category": "Projects",
+      "tags": [
+        "cerebro",
+        "ai",
+        "second brain",
+        "streamlit",
+        "project launch",
+        "strategy"
+      ],
+      "summary": "Preparing to deploy Cerebro AI Second Brain system with key features and target launch date.",
+      "timestamp": "2026-07-23T17:04:49.957782Z",
+      "source_type": "text",
+      "source_value": "streamlit_ui",
+      "filepath": "wiki/Projects/2026-07-23T17-04-49-957782Z_d5a6a18c-3558-4088-9120-5ec5baa52ce1.md"
+    },
+    {
+      "id": "cfdf4257-76f0-4d69-9add-3e0a8e39db58",
+      "title": "Daily fitness and health goals for Q3",
+      "category": "Areas",
+      "tags": [
+        "fitness",
+        "health",
+        "workouts",
+        "q3"
+      ],
+      "summary": "Daily fitness and health goals for Q3",
+      "timestamp": "2026-07-09T14:45:08.812888Z",
+      "source_type": "text",
+      "source_value": "cli",
+      "filepath": "wiki/Areas/2026-07-09T14-45-08-812888Z_cfdf4257-76f0-4d69-9add-3e0a8e39db58.md"
+    },
+    {
+      "id": "ad592e42-cc73-4c2b-9961-847f9d13d095",
+      "title": "Shopping list of essential items",
+      "category": "Resources",
+      "tags": [
+        "shopping",
+        "groceries",
+        "list"
+      ],
+      "summary": "Shopping list of essential items",
+      "timestamp": "2026-07-09T14:43:51.588358Z",
+      "source_type": "text",
+      "source_value": "cli",
+      "filepath": "wiki/Resources/2026-07-09T14-43-51-588358Z_ad592e42-cc73-4c2b-9961-847f9d13d095.md"
+    },
+    {
+      "id": "40b5c1ce-a81e-40e2-b771-ab7a87dc7950",
+      "title": "LinkedIn profile for Aaron Francis",
+      "category": "Resources",
+      "tags": [
+        "linkedin",
+        "profile",
+        "contact"
+      ],
+      "summary": "LinkedIn profile for Aaron Francis",
+      "timestamp": "2026-07-09T14:44:39.411873Z",
+      "source_type": "link",
+      "source_value": "https://linkedin.com/in/aaron-francis-00b41727a",
+      "filepath": "wiki/Resources/2026-07-09T14-44-39-411873Z_40b5c1ce-a81e-40e2-b771-ab7a87dc7950.md"
+    },
+    {
+      "id": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
+      "title": "A comprehensive Wikipedia reference covering the history,...",
+      "category": "Resources",
+      "tags": [
+        "note-taking",
+        "knowledge-management",
+        "study-methods",
+        "cognitive-psychology",
+        "learning",
+        "reference"
+      ],
+      "summary": "A comprehensive Wikipedia reference covering the history, cognitive psychology, and various systems of note-taking.",
+      "timestamp": "2026-07-09T14:44:57.641110Z",
+      "source_type": "link",
+      "source_value": "https://en.wikipedia.org/wiki/Notetaking",
+      "filepath": "wiki/Resources/2026-07-09T14-44-57-641110Z_39d7241f-07a6-49a2-a59f-ef6958f762ce.md"
+    },
+    {
+      "id": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "title": "Getting Things Done is a personal productivity system dev...",
+      "category": "Resources",
+      "tags": [
+        "productivity",
+        "time management",
+        "getting things done",
+        "gtd"
+      ],
+      "summary": "Getting Things Done is a personal productivity system developed by David Allen that provides a framework for managing tasks and projects.",
+      "timestamp": "2026-07-09T14:45:18.962170Z",
+      "source_type": "link",
+      "source_value": "https://en.wikipedia.org/wiki/Getting_Things_Done",
+      "filepath": "wiki/Resources/2026-07-09T14-45-18-962170Z_25812ac2-72e6-4f0f-afe8-7913e25e9b33.md"
+    },
+    {
+      "id": "44f1be42-3ce0-452a-8106-de3266c19730",
+      "title": "A reference note defining deep learning as a multi-layere...",
+      "category": "Resources",
+      "tags": [
+        "deep-learning",
+        "machine-learning",
+        "neural-networks",
+        "artificial-intelligence",
+        "reference"
+      ],
+      "summary": "A reference note defining deep learning as a multi-layered neural network subset of machine learning used for applications like computer vision and NLP.",
+      "timestamp": "2026-07-18T11:31:25.156551Z",
+      "source_type": "text",
+      "source_value": "cli",
+      "filepath": "wiki/Resources/2026-07-18T11-31-25-156551Z_44f1be42-3ce0-452a-8106-de3266c19730.md"
+    },
+    {
+      "id": "c0a36456-a43f-4fdb-b378-5d69da870569",
+      "title": "Defines artificial neural networks as a machine learning ...",
+      "category": "Resources",
+      "tags": [
+        "artificial-neural-networks",
+        "machine-learning",
+        "deep-learning",
+        "pattern-recognition",
+        "predictive-modeling",
+        "classification"
+      ],
+      "summary": "Defines artificial neural networks as a machine learning subset inspired by biological neurons, used for predictive modeling, classification, and pattern recognition.",
+      "timestamp": "2026-07-18T11:31:29.388710Z",
+      "source_type": "text",
+      "source_value": "cli",
+      "filepath": "wiki/Resources/2026-07-18T11-31-29-388710Z_c0a36456-a43f-4fdb-b378-5d69da870569.md"
+    },
+    {
+      "id": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
+      "title": "A Wikipedia article on personal knowledge management, cov...",
+      "category": "Resources",
+      "tags": [
+        "personal knowledge management",
+        "wikipedia",
+        "knowledge management"
+      ],
+      "summary": "A Wikipedia article on personal knowledge management, covering its history, models, criticism, skills, tools, and further reading.",
+      "timestamp": "2026-07-23T17:10:46.300026Z",
+      "source_type": "link",
+      "source_value": "https://en.wikipedia.org/wiki/Personal_knowledge_management",
+      "filepath": "wiki/Resources/2026-07-23T17-10-46-300026Z_1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d.md"
+    },
+    {
+      "id": "00746494-56a0-4db3-a8e2-727001b6eb62",
+      "title": "Legacy blog database migration completed in December 2025",
+      "category": "Archives",
+      "tags": [
+        "legacy",
+        "blog",
+        "database",
+        "migration"
+      ],
+      "summary": "Legacy blog database migration completed in December 2025",
+      "timestamp": "2026-07-09T14:45:26.753565Z",
+      "source_type": "text",
+      "source_value": "cli",
+      "filepath": "wiki/Archives/2026-07-09T14-45-26-753565Z_00746494-56a0-4db3-a8e2-727001b6eb62.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
+      "target": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d"
+    },
+    {
+      "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
+      "target": "40b5c1ce-a81e-40e2-b771-ab7a87dc7950"
+    },
+    {
+      "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
+      "target": "44f1be42-3ce0-452a-8106-de3266c19730"
+    },
+    {
+      "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
+      "target": "25812ac2-72e6-4f0f-afe8-7913e25e9b33"
+    },
+    {
+      "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
+      "target": "4981ec90-d6c7-41d4-9cf4-82f241bba253"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "cfdf4257-76f0-4d69-9add-3e0a8e39db58"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "da7d7683-9c5c-4fbe-8b14-464f22359b39"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "ad592e42-cc73-4c2b-9961-847f9d13d095"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "39d7241f-07a6-49a2-a59f-ef6958f762ce"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "ef59ea71-8827-4160-a09e-819380da81a9"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "4981ec90-d6c7-41d4-9cf4-82f241bba253"
+    },
+    {
+      "source": "44f1be42-3ce0-452a-8106-de3266c19730",
+      "target": "c0a36456-a43f-4fdb-b378-5d69da870569"
+    },
+    {
+      "source": "c0a36456-a43f-4fdb-b378-5d69da870569",
+      "target": "44f1be42-3ce0-452a-8106-de3266c19730"
+    },
+    {
+      "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
+      "target": "39d7241f-07a6-49a2-a59f-ef6958f762ce"
+    },
+    {
+      "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
+      "target": "25812ac2-72e6-4f0f-afe8-7913e25e9b33"
+    },
+    {
+      "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
+      "target": "4981ec90-d6c7-41d4-9cf4-82f241bba253"
+    }
+  ],
+  "stats": {
+    "total_nodes": 14,
+    "total_edges": 17,
+    "generated_at": "2026-07-23T17:10:53.870868+00:00"
+  }
+}

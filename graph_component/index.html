@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0A0D12;
+            color: #E2E8F0;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        #network-container {
+            box-sizing: border-box;
+            position: relative;
+            width: 100%;
+            height: 560px;
+            background-color: #0A0D12;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        #loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 13, 18, 0.9);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .spinner {
+            width: 44px;
+            height: 44px;
+            border: 3px solid rgba(0, 229, 255, 0.15);
+            border-top: 3px solid #00E5FF;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        .loading-text {
+            margin-top: 14px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #00E5FF;
+            letter-spacing: 0.5px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="network-container">
+        <div id="loading-overlay">
+            <div class="spinner"></div>
+            <div class="loading-text">Initializing Knowledge Graph...</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var Streamlit = {
+            setComponentValue: function(value) {
+                window.parent.postMessage({
+                    isStreamlitMessage: true,
+                    type: "streamlit:setComponentValue",
+                    value: value
+                }, "*");
+            },
+            setFrameHeight: function(height) {
+                window.parent.postMessage({
+                    isStreamlitMessage: true,
+                    type: "streamlit:setFrameHeight",
+                    height: height
+                }, "*");
+            },
+            setComponentReady: function() {
+                window.parent.postMessage({
+                    isStreamlitMessage: true,
+                    type: "streamlit:componentReady",
+                    apiVersion: 1
+                }, "*");
+            },
+            RENDER_EVENT: "streamlit:render"
+        };
+
+        var network = null;
+        var nodesDataSet = new vis.DataSet();
+        var edgesDataSet = new vis.DataSet();
+        var currentSelectedId = null;
+        var isDragging = false;
+        var initialFitDone = false;
+
+        function hideLoader() {
+            var loader = document.getElementById('loading-overlay');
+            if (loader) {
+                loader.classList.add('hidden');
+            }
+        }
+
+        function onRender(event) {
+            if (isDragging) return; // Prevent render cycles from locking active mouse drags
+
+            var data = event.detail ? event.detail.args : (event.data ? event.data.args : {});
+            if (!data) return;
+
+            var visNodes = data.nodes || [];
+            var visEdges = data.edges || [];
+            var physicsEnabled = (data.physics !== undefined) ? data.physics : true;
+            var selectedId = data.selectedId || null;
+
+            var container = document.getElementById('network-container');
+
+            if (!network) {
+                nodesDataSet.clear();
+                nodesDataSet.add(visNodes);
+
+                edgesDataSet.clear();
+                edgesDataSet.add(visEdges);
+
+                var graphData = { nodes: nodesDataSet, edges: edgesDataSet };
+                var options = {
+                    nodes: {
+                        borderWidth: 2,
+                        shadow: true,
+                        chosen: {
+                            node: function(values, id, selected, hovering) {
+                                values.borderWidth = 3;
+                                values.borderColor = '#FFFFFF';
+                            }
+                        }
+                    },
+                    edges: {
+                        smooth: { type: 'continuous' },
+                        selectionWidth: 2
+                    },
+                    physics: {
+                        enabled: physicsEnabled,
+                        solver: 'barnesHut',
+                        barnesHut: {
+                            gravitationalConstant: -1600,
+                            centralGravity: 0.35,
+                            springLength: 90,
+                            springConstant: 0.04,
+                            damping: 0.15,
+                            avoidOverlap: 0.3
+                        },
+                        stabilization: {
+                            enabled: true,
+                            iterations: 120,
+                            updateInterval: 25,
+                            fit: true
+                        }
+                    },
+                    interaction: {
+                        hover: true,
+                        tooltipDelay: 100,
+                        zoomView: true,
+                        dragNodes: true,
+                        dragView: true,
+                        selectable: true
+                    }
+                };
+
+                network = new vis.Network(container, graphData, options);
+
+                // Auto-fit initial view inside canvas bounding box ONCE on first load
+                network.once("stabilizationIterationsDone", function() {
+                    if (!initialFitDone) {
+                        initialFitDone = true;
+                        network.fit({
+                            animation: {
+                                duration: 400,
+                                easingFunction: "easeInOutQuad"
+                            }
+                        });
+                    }
+                    hideLoader();
+                });
+
+                network.on("afterDrawing", function() {
+                    hideLoader();
+                });
+
+                network.on("dragStart", function(params) {
+                    if (params.nodes && params.nodes.length > 0) {
+                        isDragging = true;
+                    }
+                });
+
+                network.on("dragEnd", function(params) {
+                    setTimeout(function() { isDragging = false; }, 100);
+                    if (params.nodes && params.nodes.length > 0) {
+                        var selNodeId = params.nodes[0];
+                        if (selNodeId !== currentSelectedId) {
+                            currentSelectedId = selNodeId;
+                            Streamlit.setComponentValue(selNodeId);
+                        }
+                    }
+                });
+
+                network.on("selectNode", function(params) {
+                    if (!isDragging && params.nodes && params.nodes.length > 0) {
+                        var selNodeId = params.nodes[0];
+                        if (selNodeId !== currentSelectedId) {
+                            currentSelectedId = selNodeId;
+                            Streamlit.setComponentValue(selNodeId);
+                        }
+                    }
+                });
+
+                // Fallback timeout to fit graph on initial load and hide loader
+                setTimeout(function() {
+                    if (!initialFitDone && network) {
+                        initialFitDone = true;
+                        network.fit();
+                    }
+                    hideLoader();
+                }, 600);
+            } else {
+                // In-place smart update: preserve existing node (x, y) coordinates so graph stays rock-solid
+                var currentIds = new Set(visNodes.map(function(n) { return n.id; }));
+                var existingIds = nodesDataSet.getIds();
+                
+                var toRemove = existingIds.filter(function(id) { return !currentIds.has(id); });
+                if (toRemove.length > 0) {
+                    nodesDataSet.remove(toRemove);
+                }
+                
+                nodesDataSet.update(visNodes);
+
+                edgesDataSet.clear();
+                edgesDataSet.add(visEdges);
+
+                hideLoader();
+            }
+
+            // Highlight selected node visually without hijacking user's zoom or pan position
+            if (selectedId && selectedId !== currentSelectedId && !isDragging) {
+                currentSelectedId = selectedId;
+                try {
+                    network.selectNodes([selectedId]);
+                } catch(e) {
+                    console.log("Could not select node:", e);
+                }
+            } else if (!selectedId && currentSelectedId && !isDragging) {
+                currentSelectedId = null;
+                network.unselectNodes();
+            }
+
+            Streamlit.setFrameHeight(575);
+        }
+
+        window.addEventListener("message", function(event) {
+            if (event.data && event.data.type === Streamlit.RENDER_EVENT) {
+                onRender(event);
+            }
+        });
+
+        // Initialize component with Streamlit
+        Streamlit.setComponentReady();
+        Streamlit.setFrameHeight(575);
+    </script>
+</body>
+</html>
