@@ -1,20 +1,37 @@
 {
   "nodes": [
     {
-      "id": "4981ec90-d6c7-41d4-9cf4-82f241bba253",
-      "title": "Review SecondSelf project architecture docs tonight",
+      "id": "da7d7683-9c5c-4fbe-8b14-464f22359b39",
+      "title": "Create a custom Chrome extension for quick URL capturing",
       "category": "Projects",
       "tags": [
-        "secondself",
-        "project",
-        "review",
-        "docs"
+        "chrome extension",
+        "url capturing",
+        "cli"
       ],
-      "summary": "Review SecondSelf project architecture docs tonight",
-      "timestamp": "2026-07-09T14:43:41.840177Z",
+      "summary": "Create a custom Chrome extension for quick URL capturing",
+      "timestamp": "2026-07-09T14:45:03.385953Z",
       "source_type": "text",
       "source_value": "cli",
-      "filepath": "wiki/Projects/2026-07-09T14-43-41-840177Z_4981ec90-d6c7-41d4-9cf4-82f241bba253.md"
+      "filepath": "wiki/Projects/2026-07-09T14-45-03-385953Z_da7d7683-9c5c-4fbe-8b14-464f22359b39.md"
+    },
+    {
+      "id": "d5a6a18c-3558-4088-9120-5ec5baa52ce1",
+      "title": "Preparing to deploy Cerebro AI Second Brain system with k...",
+      "category": "Projects",
+      "tags": [
+        "cerebro",
+        "ai",
+        "second brain",
+        "streamlit",
+        "project launch",
+        "strategy"
+      ],
+      "summary": "Preparing to deploy Cerebro AI Second Brain system with key features and target launch date.",
+      "timestamp": "2026-07-23T17:04:49.957782Z",
+      "source_type": "text",
+      "source_value": "streamlit_ui",
+      "filepath": "wiki/Projects/2026-07-23T17-04-49-957782Z_d5a6a18c-3558-4088-9120-5ec5baa52ce1.md"
     },
     {
       "id": "483c1376-9f06-400b-a775-373b787a9c13",
@@ -50,37 +67,20 @@
       "filepath": "wiki/Projects/2026-07-09T14-44-03-247068Z_ef59ea71-8827-4160-a09e-819380da81a9.md"
     },
     {
-      "id": "da7d7683-9c5c-4fbe-8b14-464f22359b39",
-      "title": "Create a custom Chrome extension for quick URL capturing",
+      "id": "4981ec90-d6c7-41d4-9cf4-82f241bba253",
+      "title": "Review SecondSelf project architecture docs tonight",
       "category": "Projects",
       "tags": [
-        "chrome extension",
-        "url capturing",
-        "cli"
+        "secondself",
+        "project",
+        "review",
+        "docs"
       ],
-      "summary": "Create a custom Chrome extension for quick URL capturing",
-      "timestamp": "2026-07-09T14:45:03.385953Z",
+      "summary": "Review SecondSelf project architecture docs tonight",
+      "timestamp": "2026-07-09T14:43:41.840177Z",
       "source_type": "text",
       "source_value": "cli",
-      "filepath": "wiki/Projects/2026-07-09T14-45-03-385953Z_da7d7683-9c5c-4fbe-8b14-464f22359b39.md"
-    },
-    {
-      "id": "d5a6a18c-3558-4088-9120-5ec5baa52ce1",
-      "title": "Preparing to deploy Cerebro AI Second Brain system with k...",
-      "category": "Projects",
-      "tags": [
-        "cerebro",
-        "ai",
-        "second brain",
-        "streamlit",
-        "project launch",
-        "strategy"
-      ],
-      "summary": "Preparing to deploy Cerebro AI Second Brain system with key features and target launch date.",
-      "timestamp": "2026-07-23T17:04:49.957782Z",
-      "source_type": "text",
-      "source_value": "streamlit_ui",
-      "filepath": "wiki/Projects/2026-07-23T17-04-49-957782Z_d5a6a18c-3558-4088-9120-5ec5baa52ce1.md"
+      "filepath": "wiki/Projects/2026-07-09T14-43-41-840177Z_4981ec90-d6c7-41d4-9cf4-82f241bba253.md"
     },
     {
       "id": "cfdf4257-76f0-4d69-9add-3e0a8e39db58",
@@ -97,21 +97,6 @@
       "source_type": "text",
       "source_value": "cli",
       "filepath": "wiki/Areas/2026-07-09T14-45-08-812888Z_cfdf4257-76f0-4d69-9add-3e0a8e39db58.md"
-    },
-    {
-      "id": "ad592e42-cc73-4c2b-9961-847f9d13d095",
-      "title": "Shopping list of essential items",
-      "category": "Resources",
-      "tags": [
-        "shopping",
-        "groceries",
-        "list"
-      ],
-      "summary": "Shopping list of essential items",
-      "timestamp": "2026-07-09T14:43:51.588358Z",
-      "source_type": "text",
-      "source_value": "cli",
-      "filepath": "wiki/Resources/2026-07-09T14-43-51-588358Z_ad592e42-cc73-4c2b-9961-847f9d13d095.md"
     },
     {
       "id": "40b5c1ce-a81e-40e2-b771-ab7a87dc7950",
@@ -147,22 +132,6 @@
       "filepath": "wiki/Resources/2026-07-09T14-44-57-641110Z_39d7241f-07a6-49a2-a59f-ef6958f762ce.md"
     },
     {
-      "id": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
-      "title": "Getting Things Done is a personal productivity system dev...",
-      "category": "Resources",
-      "tags": [
-        "productivity",
-        "time management",
-        "getting things done",
-        "gtd"
-      ],
-      "summary": "Getting Things Done is a personal productivity system developed by David Allen that provides a framework for managing tasks and projects.",
-      "timestamp": "2026-07-09T14:45:18.962170Z",
-      "source_type": "link",
-      "source_value": "https://en.wikipedia.org/wiki/Getting_Things_Done",
-      "filepath": "wiki/Resources/2026-07-09T14-45-18-962170Z_25812ac2-72e6-4f0f-afe8-7913e25e9b33.md"
-    },
-    {
       "id": "44f1be42-3ce0-452a-8106-de3266c19730",
       "title": "A reference note defining deep learning as a multi-layere...",
       "category": "Resources",
@@ -178,6 +147,52 @@
       "source_type": "text",
       "source_value": "cli",
       "filepath": "wiki/Resources/2026-07-18T11-31-25-156551Z_44f1be42-3ce0-452a-8106-de3266c19730.md"
+    },
+    {
+      "id": "ad592e42-cc73-4c2b-9961-847f9d13d095",
+      "title": "Shopping list of essential items",
+      "category": "Resources",
+      "tags": [
+        "shopping",
+        "groceries",
+        "list"
+      ],
+      "summary": "Shopping list of essential items",
+      "timestamp": "2026-07-09T14:43:51.588358Z",
+      "source_type": "text",
+      "source_value": "cli",
+      "filepath": "wiki/Resources/2026-07-09T14-43-51-588358Z_ad592e42-cc73-4c2b-9961-847f9d13d095.md"
+    },
+    {
+      "id": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
+      "title": "A Wikipedia article on personal knowledge management, cov...",
+      "category": "Resources",
+      "tags": [
+        "personal knowledge management",
+        "wikipedia",
+        "knowledge management"
+      ],
+      "summary": "A Wikipedia article on personal knowledge management, covering its history, models, criticism, skills, tools, and further reading.",
+      "timestamp": "2026-07-23T17:10:46.300026Z",
+      "source_type": "link",
+      "source_value": "https://en.wikipedia.org/wiki/Personal_knowledge_management",
+      "filepath": "wiki/Resources/2026-07-23T17-10-46-300026Z_1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d.md"
+    },
+    {
+      "id": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "title": "Getting Things Done is a personal productivity system dev...",
+      "category": "Resources",
+      "tags": [
+        "productivity",
+        "time management",
+        "getting things done",
+        "gtd"
+      ],
+      "summary": "Getting Things Done is a personal productivity system developed by David Allen that provides a framework for managing tasks and projects.",
+      "timestamp": "2026-07-09T14:45:18.962170Z",
+      "source_type": "link",
+      "source_value": "https://en.wikipedia.org/wiki/Getting_Things_Done",
+      "filepath": "wiki/Resources/2026-07-09T14-45-18-962170Z_25812ac2-72e6-4f0f-afe8-7913e25e9b33.md"
     },
     {
       "id": "c0a36456-a43f-4fdb-b378-5d69da870569",
@@ -196,21 +211,6 @@
       "source_type": "text",
       "source_value": "cli",
       "filepath": "wiki/Resources/2026-07-18T11-31-29-388710Z_c0a36456-a43f-4fdb-b378-5d69da870569.md"
-    },
-    {
-      "id": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
-      "title": "A Wikipedia article on personal knowledge management, cov...",
-      "category": "Resources",
-      "tags": [
-        "personal knowledge management",
-        "wikipedia",
-        "knowledge management"
-      ],
-      "summary": "A Wikipedia article on personal knowledge management, covering its history, models, criticism, skills, tools, and further reading.",
-      "timestamp": "2026-07-23T17:10:46.300026Z",
-      "source_type": "link",
-      "source_value": "https://en.wikipedia.org/wiki/Personal_knowledge_management",
-      "filepath": "wiki/Resources/2026-07-23T17-10-46-300026Z_1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d.md"
     },
     {
       "id": "00746494-56a0-4db3-a8e2-727001b6eb62",
@@ -232,23 +232,55 @@
   "edges": [
     {
       "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
-      "target": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d"
-    },
-    {
-      "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
       "target": "25812ac2-72e6-4f0f-afe8-7913e25e9b33"
     },
     {
       "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
-      "target": "4981ec90-d6c7-41d4-9cf4-82f241bba253"
+      "target": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d"
+    },
+    {
+      "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
+      "target": "483c1376-9f06-400b-a775-373b787a9c13"
+    },
+    {
+      "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
+      "target": "44f1be42-3ce0-452a-8106-de3266c19730"
     },
     {
       "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
       "target": "40b5c1ce-a81e-40e2-b771-ab7a87dc7950"
     },
     {
-      "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
-      "target": "44f1be42-3ce0-452a-8106-de3266c19730"
+      "source": "44f1be42-3ce0-452a-8106-de3266c19730",
+      "target": "c0a36456-a43f-4fdb-b378-5d69da870569"
+    },
+    {
+      "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
+      "target": "25812ac2-72e6-4f0f-afe8-7913e25e9b33"
+    },
+    {
+      "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
+      "target": "39d7241f-07a6-49a2-a59f-ef6958f762ce"
+    },
+    {
+      "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
+      "target": "483c1376-9f06-400b-a775-373b787a9c13"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "39d7241f-07a6-49a2-a59f-ef6958f762ce"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "483c1376-9f06-400b-a775-373b787a9c13"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "cfdf4257-76f0-4d69-9add-3e0a8e39db58"
     },
     {
       "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
@@ -260,48 +292,16 @@
     },
     {
       "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
-      "target": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d"
-    },
-    {
-      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
       "target": "ef59ea71-8827-4160-a09e-819380da81a9"
-    },
-    {
-      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
-      "target": "cfdf4257-76f0-4d69-9add-3e0a8e39db58"
-    },
-    {
-      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
-      "target": "4981ec90-d6c7-41d4-9cf4-82f241bba253"
-    },
-    {
-      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
-      "target": "39d7241f-07a6-49a2-a59f-ef6958f762ce"
-    },
-    {
-      "source": "44f1be42-3ce0-452a-8106-de3266c19730",
-      "target": "c0a36456-a43f-4fdb-b378-5d69da870569"
     },
     {
       "source": "c0a36456-a43f-4fdb-b378-5d69da870569",
       "target": "44f1be42-3ce0-452a-8106-de3266c19730"
-    },
-    {
-      "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
-      "target": "25812ac2-72e6-4f0f-afe8-7913e25e9b33"
-    },
-    {
-      "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
-      "target": "4981ec90-d6c7-41d4-9cf4-82f241bba253"
-    },
-    {
-      "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
-      "target": "39d7241f-07a6-49a2-a59f-ef6958f762ce"
     }
   ],
   "stats": {
     "total_nodes": 14,
     "total_edges": 17,
-    "generated_at": "2026-07-31T10:28:50.982221+00:00"
+    "generated_at": "2026-07-31T10:37:03.328800+00:00"
   }
 }
