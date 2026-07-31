@@ -84,7 +84,11 @@ def sync_to_github(commit_message="Auto-sync ingested note to GitHub"):
                 if url and "/" in url:
                     clean_repo = url if url.endswith(".git") else url + ".git"
 
+            if clean_repo.lower().startswith("niklaus2003/"):
+                clean_repo = "Niklaus2003/" + clean_repo[len("niklaus2003/"):]
+
             auth_url = f"https://x-access-token:{github_token}@github.com/{clean_repo}"
+
             push_proc = subprocess.run(
                 ["git", "push", auth_url, "HEAD:main"],
                 cwd=base_dir,
