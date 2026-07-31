@@ -355,7 +355,7 @@ def render_vis_graph(nodes, edges, selected_category="All", search_term="", phys
 
 def main():
     # Inject auto-select JavaScript for text inputs so clicking into query bar selects previous text for instant overwrite
-    components.html("""
+    st.markdown("""
     <script>
     (function() {
         function attachAutoSelect() {
@@ -379,7 +379,8 @@ def main():
         setInterval(attachAutoSelect, 600);
     })();
     </script>
-    """, height=0, width=0)
+    """, unsafe_allow_html=True)
+
 
     # Top Header Banner
     st.markdown("""
