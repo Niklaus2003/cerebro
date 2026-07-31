@@ -14,8 +14,9 @@ def sync_to_github(commit_message="Auto-sync ingested note to GitHub"):
         # Files/directories to ensure tracked
         target_paths = ["raw", "wiki", "graph.json", "data/graph.json"]
         
-        # Stage files
-        subprocess.run(["git", "add"] + target_paths, cwd=base_dir, check=False)
+        # Stage files (including file deletions)
+        subprocess.run(["git", "add", "-A"] + target_paths, cwd=base_dir, check=False)
+
         
         # Check if there are changes to commit
         status_proc = subprocess.run(

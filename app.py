@@ -269,6 +269,80 @@ def process_and_rebuild_vault(source_type, source_value, content):
 
     return True
 
+def delete_note_and_rebuild(node_id, note_title="Note", file_rel=""):
+    """
+    Deletes a note from the vault:
+    1. Removes Markdown file in wiki/
+    2. Searches and removes matching raw capture payload(s) in raw/
+    3. Invalidates Streamlit graph cache & removes cached embeddings
+    4. Rebuilds the knowledge graph via build_graph.main()
+    5. Syncs file deletion to GitHub via git_sync.py
+    """
+    load_graph_data.clear()
+    
+    # 1. Delete Markdown file in wiki/
+    candidate_paths = []
+    if file_rel:
+        normalized_rel = file_rel.replace("\\", "/")
+        candidate_paths.extend([
+            os.path.join(BASE_DIR, file_rel),
+            os.path.join(BASE_DIR, normalized_rel),
+            os.path.join(WIKI_DIR, file_rel),
+            os.path.join(WIKI_DIR, normalized_rel),
+        ])
+
+    if os.path.exists(WIKI_DIR):
+        for root, _, files in os.walk(WIKI_DIR):
+            for fname in files:
+                if node_id in fname or (file_rel and os.path.basename(file_rel) == fname):
+                    candidate_paths.append(os.path.join(root, fname))
+
+    for p in set(candidate_paths):
+        if os.path.exists(p) and os.path.isfile(p):
+            try:
+                os.remove(p)
+                print(f"Deleted note markdown file: {p}")
+            except Exception as e:
+                print(f"Error removing markdown file {p}: {e}")
+
+    # 2. Delete matching raw capture payload(s) in raw/
+    if os.path.exists(RAW_DIR):
+        for fname in os.listdir(RAW_DIR):
+            if fname.endswith(".json") and node_id in fname:
+                raw_p = os.path.join(RAW_DIR, fname)
+                try:
+                    os.remove(raw_p)
+                    print(f"Deleted raw capture payload: {raw_p}")
+                except Exception as e:
+                    print(f"Error removing raw file {raw_p}: {e}")
+
+    # 3. Delete cached embeddings file
+    embeddings_cache = os.path.join(BASE_DIR, "data", "wiki_embeddings.pkl")
+    if os.path.exists(embeddings_cache):
+        try:
+            os.remove(embeddings_cache)
+        except Exception:
+            pass
+
+    # 4. Rebuild Knowledge Graph
+    if BUILD_GRAPH_AVAILABLE:
+        try:
+            build_graph.main()
+        except Exception as err:
+            print(f"Graph rebuild error after deletion: {err}")
+
+    # 5. Git Sync Deletion to GitHub
+    if GIT_SYNC_AVAILABLE:
+        try:
+            sync_to_github(f"Deleted note: {note_title}")
+        except Exception as err:
+            print(f"Git sync deletion error: {err}")
+
+    st.session_state.pop("active_node_id", None)
+    st.session_state["graph_reset_token"] = st.session_state.get("graph_reset_token", 0) + 1
+    return True
+
+
 def render_vis_graph(nodes, edges, selected_category="All", search_term="", physics_enabled=True, currently_selected_id=None):
     """
     Renders interactive vis-network visualizer using custom Streamlit component IPC.
@@ -579,7 +653,14 @@ def main():
                 </div>
                 """, unsafe_allow_html=True)
 
+                if st.button("🗑️ Delete Note from Vault & Graph", key="btn_delete_inspector_node", use_container_width=True):
+                    with st.spinner("Deleting note and syncing to GitHub..."):
+                        delete_note_and_rebuild(selected_node.get("id"), selected_node.get("title", "Note"), selected_node.get("filepath", ""))
+                    st.toast(f"Note '{selected_node.get('title')}' deleted successfully!")
+                    st.rerun()
+
                 st.markdown("<br/>", unsafe_allow_html=True)
+
                 st.markdown("#### Metadata & Connections")
                 m_c1, m_c2 = st.columns(2)
                 with m_c1:
@@ -770,7 +851,16 @@ def main():
                 badge_cls = f"badge badge-{cat.lower()}"
                 
                 with st.expander(f"[{cat}] {note.get('title')} ({note.get('id')[:8]})"):
-                    st.markdown(f"**Category:** <span class='{badge_cls}'>{cat}</span>", unsafe_allow_html=True)
+                    c_hdr1, c_hdr2 = st.columns([7, 3], vertical_alignment="center")
+                    with c_hdr1:
+                        st.markdown(f"**Category:** <span class='{badge_cls}'>{cat}</span>", unsafe_allow_html=True)
+                    with c_hdr2:
+                        if st.button("🗑️ Delete Note", key=f"btn_del_vault_{note.get('id')}", use_container_width=True):
+                            with st.spinner("Deleting note..."):
+                                delete_note_and_rebuild(note.get("id"), note.get("title", "Note"), note.get("filepath", ""))
+                            st.toast(f"Note '{note.get('title')}' deleted!")
+                            st.rerun()
+
                     st.markdown(f"**Summary:** {note.get('summary', '')}")
                     tags = note.get("tags", [])
                     st.markdown(f"**Tags:** `{', '.join(tags) if isinstance(tags, list) else tags}`")
@@ -780,6 +870,7 @@ def main():
                     if os.path.exists(full_path):
                         with open(full_path, "r", encoding="utf-8", errors="replace") as f_note:
                             st.code(f_note.read(), language="markdown")
+
 
 if __name__ == "__main__":
     main()
