@@ -60,6 +60,13 @@ try:
 except ImportError:
     BUILD_GRAPH_AVAILABLE = False
 
+try:
+    from git_sync import sync_to_github
+    GIT_SYNC_AVAILABLE = True
+except ImportError:
+    GIT_SYNC_AVAILABLE = False
+
+
 
 # Page Configuration
 st.set_page_config(
@@ -254,6 +261,12 @@ def process_and_rebuild_vault(source_type, source_value, content):
             except Exception as e:
                 print(f"Graph build warning: {e}")
 
+    if GIT_SYNC_AVAILABLE:
+        try:
+            sync_to_github("Ingested new note via Streamlit UI")
+        except Exception as e:
+            print(f"Git sync warning: {e}")
+
     return True
 
 def render_vis_graph(nodes, edges, selected_category="All", search_term="", physics_enabled=True, currently_selected_id=None):
@@ -264,20 +277,30 @@ def render_vis_graph(nodes, edges, selected_category="All", search_term="", phys
     filtered_node_ids = set()
     vis_nodes = []
     
+    clean_search = search_term.strip().lower() if search_term else ""
+
     for n in nodes:
         cat = n.get("category", "Resources")
-        title = n.get("title", n.get("id"))
-        summary = n.get("summary", "")
+        title = str(n.get("title", n.get("id")))
+        summary = str(n.get("summary", ""))
         tags = n.get("tags", [])
+        node_id = str(n.get("id", ""))
+        tags_str = ", ".join(tags) if isinstance(tags, list) else str(tags)
         
         if selected_category != "All" and cat != selected_category:
             continue
             
-        if search_term and search_term.lower() not in title.lower() and search_term.lower() not in summary.lower():
-            continue
+        if clean_search:
+            match_title = clean_search in title.lower()
+            match_summary = clean_search in summary.lower()
+            match_tags = clean_search in tags_str.lower()
+            match_id = clean_search in node_id.lower()
+            if not (match_title or match_summary or match_tags or match_id):
+                continue
 
         filtered_node_ids.add(n["id"])
         color = CATEGORY_COLORS.get(cat, "#00E676")
+
         
         tags_str = ", ".join(tags) if isinstance(tags, list) else str(tags)
         clean_tooltip_text = f"[{cat}] {title}\n\nSummary: {summary if summary else 'No summary'}\nTags: {tags_str}"
@@ -497,11 +520,13 @@ def main():
                     st.session_state["clear_graph_search_flag"] = False
 
                 with st.form("form_graph_filter", clear_on_submit=False):
-                    c_cat, c_srch, c_clr, c_phys = st.columns([3, 4, 2, 3], vertical_alignment="bottom")
+                    c_cat, c_srch, c_sub, c_clr, c_phys = st.columns([3, 4, 2, 2, 3], vertical_alignment="bottom")
                     with c_cat:
                         selected_cat = st.selectbox("Category Filter", ["All"] + CATEGORIES, index=0)
                     with c_srch:
-                        search_query = st.text_input("Highlight Node", placeholder="Type title keywords...", key="graph_search_input_key")
+                        search_query = st.text_input("Search Graph Node", placeholder="Type keyword & press Enter...", key="graph_search_input_key")
+                    with c_sub:
+                        btn_submit_search = st.form_submit_button("🔍 Search", type="primary", use_container_width=True)
                     with c_clr:
                         btn_clear_graph = st.form_submit_button("🗑️ Clear", use_container_width=True)
                     with c_phys:
@@ -510,6 +535,7 @@ def main():
                 if btn_clear_graph:
                     st.session_state["clear_graph_search_flag"] = True
                     st.rerun()
+
 
                 # Render canvas graph component with current_active_id
                 clicked_canvas_id = render_vis_graph(

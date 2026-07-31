@@ -13,10 +13,6 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Ignore raw captured notes (private JSON payloads)
-raw/*
-!raw/.gitkeep
-
 # Ignore temporary scraped domain folders and obsidian configs in wiki
 wiki/en.wikipedia.org/
 wiki/upload.wikimedia.org/
@@ -25,6 +21,6 @@ wiki/.obsidian/
 # Ignore docs folder as requested by the user
 docs/
 
-# Ignore local embeddings cache data & temporary html preview
-data/
+# Temporary html preview
 graph_viewer.html
+

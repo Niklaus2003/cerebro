@@ -238,6 +238,39 @@
                     }
                     hideLoader();
                 }, 600);
+
+                // ResizeObserver to detect tab visibility change & container resize
+                var lastWidth = container.clientWidth;
+                var lastHeight = container.clientHeight;
+                if (window.ResizeObserver) {
+                    var ro = new ResizeObserver(function(entries) {
+                        for (var i = 0; i < entries.length; i++) {
+                            var rect = entries[i].contentRect;
+                            if (rect.width > 0 && rect.height > 0) {
+                                if (lastWidth === 0 || lastHeight === 0) {
+                                    // Transitioned from hidden tab (0x0) to visible!
+                                    setTimeout(function() {
+                                        if (network) {
+                                            network.redraw();
+                                            network.fit({
+                                                animation: {
+                                                    duration: 350,
+                                                    easingFunction: "easeInOutQuad"
+                                                }
+                                            });
+                                        }
+                                    }, 150);
+                                }
+                                lastWidth = rect.width;
+                                lastHeight = rect.height;
+                            } else {
+                                lastWidth = 0;
+                                lastHeight = 0;
+                            }
+                        }
+                    });
+                    ro.observe(container);
+                }
             } else {
                 // In-place smart update: preserve existing node (x, y) coordinates so graph stays rock-solid
                 var currentIds = new Set(visNodes.map(function(n) { return n.id; }));
@@ -300,3 +333,4 @@
     </script>
 </body>
 </html>
+
