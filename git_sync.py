@@ -57,7 +57,7 @@ def sync_to_github(commit_message="Auto-sync ingested note to GitHub"):
             pass
 
         if github_token:
-            # Push with token authentication to origin main/master
+            # Push with token authentication to origin HEAD
             remote_url_proc = subprocess.run(
                 ["git", "remote", "get-url", "origin"],
                 cwd=base_dir,
@@ -66,19 +66,26 @@ def sync_to_github(commit_message="Auto-sync ingested note to GitHub"):
                 check=False
             )
             remote_url = remote_url_proc.stdout.strip()
+            
+            clean_repo = "Niklaus2003/cerebro.git"
             if remote_url and "github.com" in remote_url:
-                # Format: https://x-access-token:<TOKEN>@github.com/user/repo.git
-                clean_repo = remote_url.split("github.com/")[-1]
-                auth_url = f"https://x-access-token:{github_token}@github.com/{clean_repo}"
-                push_proc = subprocess.run(
-                    ["git", "push", auth_url, "HEAD"],
-                    cwd=base_dir,
-                    capture_output=True,
-                    text=True,
-                    check=False
-                )
-                print("Git authenticated push output:", push_proc.stdout, push_proc.stderr)
-                return push_proc.returncode == 0
+                if "github.com:" in remote_url:
+                    clean_repo = remote_url.split("github.com:")[-1]
+                elif "github.com/" in remote_url:
+                    clean_repo = remote_url.split("github.com/")[-1]
+            clean_repo = clean_repo.strip("/")
+
+            auth_url = f"https://x-access-token:{github_token}@github.com/{clean_repo}"
+            push_proc = subprocess.run(
+                ["git", "push", auth_url, "HEAD"],
+                cwd=base_dir,
+                capture_output=True,
+                text=True,
+                check=False
+            )
+            print("Git authenticated push output:", push_proc.stdout, push_proc.stderr)
+            return push_proc.returncode == 0
+
         
         # Standard git push fallback (uses local git credentials)
         push_proc = subprocess.run(
