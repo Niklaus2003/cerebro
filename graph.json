@@ -213,6 +213,22 @@
       "filepath": "wiki/Resources/2026-07-18T11-31-29-388710Z_c0a36456-a43f-4fdb-b378-5d69da870569.md"
     },
     {
+      "id": "cdbb35bf-e6f6-44ce-a0fd-f8e3af570511",
+      "title": "Abhijeet Dipke rejects speculation of divide between CJP ...",
+      "category": "Resources",
+      "tags": [
+        "news",
+        "india",
+        "politics",
+        "media"
+      ],
+      "summary": "Abhijeet Dipke rejects speculation of divide between CJP and Sonam Wangchuk",
+      "timestamp": "2026-07-31T10:43:44.022947Z",
+      "source_type": "link",
+      "source_value": "https://www.indiatoday.in/india/story/cannot-forget-his-sacrifice-abhijeet-dipke-rejects-speculation-of-divide-between-cjp-sonam-wangchuk-2960575-2026-07-31",
+      "filepath": "wiki/Resources/2026-07-31T10-43-44-022947Z_cdbb35bf-e6f6-44ce-a0fd-f8e3af570511.md"
+    },
+    {
       "id": "00746494-56a0-4db3-a8e2-727001b6eb62",
       "title": "Legacy blog database migration completed in December 2025",
       "category": "Archives",
@@ -300,8 +316,8 @@
     }
   ],
   "stats": {
-    "total_nodes": 14,
+    "total_nodes": 15,
     "total_edges": 17,
-    "generated_at": "2026-07-31T10:43:23.783530+00:00"
+    "generated_at": "2026-07-31T10:43:46.834527+00:00"
   }
 }
