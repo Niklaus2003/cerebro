@@ -50,6 +50,26 @@
       "filepath": "wiki/Projects/2026-07-09T14-43-57-622839Z_483c1376-9f06-400b-a775-373b787a9c13.md"
     },
     {
+      "id": "33d44c6e-de0e-456c-860f-1ae423c07464",
+      "title": "Weekly project sync meeting notes covering progress, bloc...",
+      "category": "Projects",
+      "tags": [
+        "meeting",
+        "project",
+        "sync",
+        "backend",
+        "frontend",
+        "integration",
+        "deployment",
+        "analytics"
+      ],
+      "summary": "Weekly project sync meeting notes covering progress, blockers, and action items for the team.",
+      "timestamp": "2026-07-31T10:48:26.850513Z",
+      "source_type": "text",
+      "source_value": "streamlit_ui",
+      "filepath": "wiki/Projects/2026-07-31T10-48-26-850513Z_33d44c6e-de0e-456c-860f-1ae423c07464.md"
+    },
+    {
       "id": "ef59ea71-8827-4160-a09e-819380da81a9",
       "title": "Local markdown file to test Cerebro capture capabilities",
       "category": "Projects",
@@ -256,6 +276,10 @@
     },
     {
       "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
+      "target": "33d44c6e-de0e-456c-860f-1ae423c07464"
+    },
+    {
+      "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
       "target": "483c1376-9f06-400b-a775-373b787a9c13"
     },
     {
@@ -276,6 +300,10 @@
     },
     {
       "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
+      "target": "33d44c6e-de0e-456c-860f-1ae423c07464"
+    },
+    {
+      "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
       "target": "39d7241f-07a6-49a2-a59f-ef6958f762ce"
     },
     {
@@ -289,6 +317,10 @@
     {
       "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
       "target": "39d7241f-07a6-49a2-a59f-ef6958f762ce"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "33d44c6e-de0e-456c-860f-1ae423c07464"
     },
     {
       "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
@@ -316,8 +348,8 @@
     }
   ],
   "stats": {
-    "total_nodes": 15,
-    "total_edges": 17,
-    "generated_at": "2026-07-31T10:43:46.834527+00:00"
+    "total_nodes": 16,
+    "total_edges": 20,
+    "generated_at": "2026-07-31T10:48:29.953691+00:00"
   }
 }

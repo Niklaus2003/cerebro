@@ -1,0 +1,7 @@
+{
+  "id": "33d44c6e-de0e-456c-860f-1ae423c07464",
+  "timestamp": "2026-07-31T10:48:26.850513Z",
+  "source_type": "text",
+  "source_value": "streamlit_ui",
+  "raw_content": "Sample Meeting Notes\n\nMeeting Title: Weekly Project Sync\nDate: 31 July 2026\nTime: 10:00 AM – 10:45 AM\nAttendees: Aaron, Priya, Rahul, Sneha\n\nAgenda\nReview progress from last week\nDiscuss current blockers\nPlan tasks for next week\nDiscussion\nBackend API integration is 90% complete.\nFrontend team finished the dashboard UI and started integration testing.\nA deployment issue was found in the staging environment due to a missing environment variable.\nTeam agreed to postpone the analytics feature to the next sprint to focus on core functionality.\nDecisions\nDeploy the current build to staging after fixing the configuration issue.\nComplete API testing before merging into the main branch.\nAnalytics module will be developed in the next sprint.\nAction Items\nTask\tOwner\tDue Date\nFix staging configuration\tRahul\t1 Aug 2026\nComplete API testing\tAaron\t2 Aug 2026\nReview frontend integration\tPriya\t2 Aug 2026\nPrepare sprint demo\tSneha\t4 Aug 2026\nBlockers\nMissing environment variable preventing successful deployment.\nWaiting for updated API documentation from the backend team.\nNext Meeting\n\nDate: 7 August 2026\nTime: 10:00 AM IST"
+}
