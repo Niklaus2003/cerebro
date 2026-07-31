@@ -195,6 +195,22 @@
       "filepath": "wiki/Resources/2026-07-09T14-45-18-962170Z_25812ac2-72e6-4f0f-afe8-7913e25e9b33.md"
     },
     {
+      "id": "eea1bbe6-5b40-4a83-aa8d-06dad51c5f1e",
+      "title": "Abhijeet Dipke rejects speculation of divide between CJP ...",
+      "category": "Resources",
+      "tags": [
+        "news",
+        "india",
+        "politics",
+        "media"
+      ],
+      "summary": "Abhijeet Dipke rejects speculation of divide between CJP and Sonam Wangchuk",
+      "timestamp": "2026-07-31T10:37:33.095990Z",
+      "source_type": "link",
+      "source_value": "https://www.indiatoday.in/india/story/cannot-forget-his-sacrifice-abhijeet-dipke-rejects-speculation-of-divide-between-cjp-sonam-wangchuk-2960575-2026-07-31",
+      "filepath": "wiki/Resources/2026-07-31T10-37-33-095990Z_eea1bbe6-5b40-4a83-aa8d-06dad51c5f1e.md"
+    },
+    {
       "id": "c0a36456-a43f-4fdb-b378-5d69da870569",
       "title": "Defines artificial neural networks as a machine learning ...",
       "category": "Resources",
@@ -300,8 +316,8 @@
     }
   ],
   "stats": {
-    "total_nodes": 14,
+    "total_nodes": 15,
     "total_edges": 17,
-    "generated_at": "2026-07-31T10:37:03.328800+00:00"
+    "generated_at": "2026-07-31T10:37:36.159022+00:00"
   }
 }
