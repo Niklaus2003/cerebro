@@ -58,7 +58,8 @@ def sync_to_github(commit_message="Auto-sync ingested note to GitHub"):
             pass
 
         if github_token:
-            # Push with token authentication to origin HEAD
+            import re
+            # Push with token authentication to origin HEAD:main
             remote_url_proc = subprocess.run(
                 ["git", "remote", "get-url", "origin"],
                 cwd=base_dir,
@@ -69,16 +70,16 @@ def sync_to_github(commit_message="Auto-sync ingested note to GitHub"):
             remote_url = remote_url_proc.stdout.strip()
             
             clean_repo = "Niklaus2003/cerebro.git"
-            if remote_url and "github.com" in remote_url:
-                if "github.com:" in remote_url:
-                    clean_repo = remote_url.split("github.com:")[-1]
-                elif "github.com/" in remote_url:
-                    clean_repo = remote_url.split("github.com/")[-1]
-            clean_repo = clean_repo.strip("/")
+            match = re.search(r"([a-zA-Z0-9_\-]+/[a-zA-Z0-9_\-\.]+?)(?:\.git)?$", remote_url.strip().rstrip("/"))
+            if match:
+                repo_path = match.group(1)
+                if not repo_path.endswith(".git"):
+                    repo_path += ".git"
+                clean_repo = repo_path
 
             auth_url = f"https://x-access-token:{github_token}@github.com/{clean_repo}"
             push_proc = subprocess.run(
-                ["git", "push", auth_url, "HEAD"],
+                ["git", "push", auth_url, "HEAD:main"],
                 cwd=base_dir,
                 capture_output=True,
                 text=True,
@@ -86,6 +87,7 @@ def sync_to_github(commit_message="Auto-sync ingested note to GitHub"):
             )
             print("Git authenticated push output:", push_proc.stdout, push_proc.stderr)
             return push_proc.returncode == 0
+
 
         
         # Standard git push fallback (uses local git credentials)
