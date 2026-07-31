@@ -1,0 +1,7 @@
+{
+  "id": "d5a6a18c-3558-4088-9120-5ec5baa52ce1",
+  "timestamp": "2026-07-23T17:04:49.957782Z",
+  "source_type": "text",
+  "source_value": "streamlit_ui",
+  "raw_content": "Project Launch & Strategy Note:\nWe are preparing to deploy the Cerebro AI Second Brain system. Key features include automated PARA classification, sentence-transformer vector embedding linking, interactive vis.js graph visualization, and Google Gemini RAG query synthesis.\nTarget Launch Date: August 15, 2026.\nTeam Lead: Aaron Francis.\n\n"
+}

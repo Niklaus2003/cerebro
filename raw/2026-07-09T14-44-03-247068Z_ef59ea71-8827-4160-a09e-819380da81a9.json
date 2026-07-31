@@ -1,0 +1,7 @@
+{
+  "id": "ef59ea71-8827-4160-a09e-819380da81a9",
+  "timestamp": "2026-07-09T14:44:03.247068Z",
+  "source_type": "file",
+  "source_value": "test_note.txt",
+  "raw_content": "# Project Ideas: Cerebro\n\nThis is a local markdown file to test the capture capabilities of Cerebro.\nIt should be successfully read and stored as a JSON object in raw/ folder.\n- Idea 1: Add a daily digest feature.\n- Idea 2: Add voice note transcription.\n"
+}
