@@ -263,11 +263,15 @@ def process_and_rebuild_vault(source_type, source_value, content):
 
     if GIT_SYNC_AVAILABLE:
         try:
-            sync_to_github("Ingested new note via Streamlit UI")
+            import importlib
+            import git_sync
+            importlib.reload(git_sync)
+            git_sync.sync_to_github("Ingested new note via Streamlit UI")
         except Exception as e:
             print(f"Git sync warning: {e}")
 
     return True
+
 
 def delete_note_and_rebuild(node_id, note_title="Note", file_rel=""):
     """
@@ -334,9 +338,13 @@ def delete_note_and_rebuild(node_id, note_title="Note", file_rel=""):
     # 5. Git Sync Deletion to GitHub
     if GIT_SYNC_AVAILABLE:
         try:
-            sync_to_github(f"Deleted note: {note_title}")
+            import importlib
+            import git_sync
+            importlib.reload(git_sync)
+            git_sync.sync_to_github(f"Deleted note: {note_title}")
         except Exception as err:
             print(f"Git sync deletion error: {err}")
+
 
     st.session_state.pop("active_node_id", None)
     st.session_state["graph_reset_token"] = st.session_state.get("graph_reset_token", 0) + 1
