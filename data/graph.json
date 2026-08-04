@@ -99,6 +99,24 @@
       "filepath": "wiki/Areas/2026-07-09T14-45-08-812888Z_cfdf4257-76f0-4d69-9add-3e0a8e39db58.md"
     },
     {
+      "id": "055caa3a-f117-4e5d-b591-95bd2f95c5a2",
+      "title": "Kerala flood relief compensation raised as death toll rea...",
+      "category": "Resources",
+      "tags": [
+        "kerala",
+        "flood",
+        "relief",
+        "compensation",
+        "death toll",
+        "news"
+      ],
+      "summary": "Kerala flood relief compensation raised as death toll reaches 15, seven remain missing",
+      "timestamp": "2026-08-04T04:16:49.567809Z",
+      "source_type": "link",
+      "source_value": "https://www.indiatoday.in/india/kerala/story/kerala-flood-relief-compensation-raised-death-toll-15-seven-missing-2962850-2026-08-04",
+      "filepath": "wiki/Resources/2026-08-04T04-16-49-567809Z_055caa3a-f117-4e5d-b591-95bd2f95c5a2.md"
+    },
+    {
       "id": "40b5c1ce-a81e-40e2-b771-ab7a87dc7950",
       "title": "LinkedIn profile for Aaron Francis",
       "category": "Resources",
@@ -247,12 +265,12 @@
   ],
   "edges": [
     {
-      "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
-      "target": "25812ac2-72e6-4f0f-afe8-7913e25e9b33"
+      "source": "055caa3a-f117-4e5d-b591-95bd2f95c5a2",
+      "target": "cdbb35bf-e6f6-44ce-a0fd-f8e3af570511"
     },
     {
       "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
-      "target": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d"
+      "target": "25812ac2-72e6-4f0f-afe8-7913e25e9b33"
     },
     {
       "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
@@ -260,11 +278,15 @@
     },
     {
       "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
-      "target": "44f1be42-3ce0-452a-8106-de3266c19730"
+      "target": "40b5c1ce-a81e-40e2-b771-ab7a87dc7950"
     },
     {
       "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
-      "target": "40b5c1ce-a81e-40e2-b771-ab7a87dc7950"
+      "target": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d"
+    },
+    {
+      "source": "39d7241f-07a6-49a2-a59f-ef6958f762ce",
+      "target": "44f1be42-3ce0-452a-8106-de3266c19730"
     },
     {
       "source": "44f1be42-3ce0-452a-8106-de3266c19730",
@@ -272,14 +294,26 @@
     },
     {
       "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
-      "target": "25812ac2-72e6-4f0f-afe8-7913e25e9b33"
-    },
-    {
-      "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
       "target": "39d7241f-07a6-49a2-a59f-ef6958f762ce"
     },
     {
       "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
+      "target": "25812ac2-72e6-4f0f-afe8-7913e25e9b33"
+    },
+    {
+      "source": "1942e7eb-f1e9-4e45-9e23-0af3e9f38b0d",
+      "target": "483c1376-9f06-400b-a775-373b787a9c13"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "39d7241f-07a6-49a2-a59f-ef6958f762ce"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
+      "target": "ad592e42-cc73-4c2b-9961-847f9d13d095"
+    },
+    {
+      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
       "target": "483c1376-9f06-400b-a775-373b787a9c13"
     },
     {
@@ -288,19 +322,7 @@
     },
     {
       "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
-      "target": "39d7241f-07a6-49a2-a59f-ef6958f762ce"
-    },
-    {
-      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
-      "target": "483c1376-9f06-400b-a775-373b787a9c13"
-    },
-    {
-      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
       "target": "cfdf4257-76f0-4d69-9add-3e0a8e39db58"
-    },
-    {
-      "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
-      "target": "ad592e42-cc73-4c2b-9961-847f9d13d095"
     },
     {
       "source": "25812ac2-72e6-4f0f-afe8-7913e25e9b33",
@@ -313,11 +335,15 @@
     {
       "source": "c0a36456-a43f-4fdb-b378-5d69da870569",
       "target": "44f1be42-3ce0-452a-8106-de3266c19730"
+    },
+    {
+      "source": "cdbb35bf-e6f6-44ce-a0fd-f8e3af570511",
+      "target": "055caa3a-f117-4e5d-b591-95bd2f95c5a2"
     }
   ],
   "stats": {
-    "total_nodes": 15,
-    "total_edges": 17,
-    "generated_at": "2026-07-31T10:49:15.589324+00:00"
+    "total_nodes": 16,
+    "total_edges": 19,
+    "generated_at": "2026-08-04T04:17:17.443935+00:00"
   }
 }
